@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "webgrep"
+version = "0.1.0"
+description = "Metasearch CLI — query multiple search engines in parallel with browser impersonation"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "PaperBoardOfficial" }]
+keywords = ["search", "metasearch", "cli", "scraping", "serp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "curl_cffi>=0.7.0",
+    "lxml>=5.0.0",
+]
+
+[project.scripts]
+webgrep = "webgrep.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/PaperBoardOfficial/webgrep"
+
+[tool.setuptools.packages.find]
+where = ["src"]

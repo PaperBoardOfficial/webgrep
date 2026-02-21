@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "webserp"
-version = "0.1.3"
+version = "0.1.4"
 description = "Metasearch CLI — query multiple search engines in parallel with browser impersonation"
 readme = "README.md"
 license = {text = "MIT"}

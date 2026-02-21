@@ -2,13 +2,13 @@
 
 Metasearch CLI — query multiple search engines in parallel with browser impersonation.
 
-Like `grep` for the web. Searches Google, Bing, DuckDuckGo, Brave, Yahoo, Mojeek, Startpage, and Presearch simultaneously, deduplicates results, and returns clean JSON.
+Like `grep` for the web. Searches Google, DuckDuckGo, Brave, Yahoo, Mojeek, Startpage, and Presearch simultaneously, deduplicates results, and returns clean JSON.
 
 ## Why webserp?
 
 Most search scraping tools get rate-limited and blocked because they use standard HTTP libraries. webserp uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to impersonate real browsers (Chrome TLS/JA3 fingerprints), making requests indistinguishable from a human browsing.
 
-- **8 search engines** queried in parallel
+- **7 search engines** queried in parallel
 - **Browser impersonation** via curl_cffi — bypasses bot detection
 - **Fault tolerant** — if one engine fails, others still return results
 - **SearXNG-compatible JSON** output format
@@ -28,7 +28,7 @@ pip install webserp
 webserp "how to deploy docker containers"
 
 # Search specific engines
-webserp "python async tutorial" --engines google,brave,bing
+webserp "python async tutorial" --engines google,brave,duckduckgo
 
 # Limit results per engine
 webserp "rust vs go" --max-results 5
@@ -74,11 +74,11 @@ JSON output matching SearXNG's format:
 
 ## Engines
 
-google, bing, duckduckgo, brave, yahoo, mojeek, startpage, presearch
+google, duckduckgo, brave, yahoo, mojeek, startpage, presearch
 
 ## For OpenClaw and AI agents
 
-**Built for AI agents.** Tools like [OpenClaw](https://github.com/openclaw/openclaw) and other AI agents need reliable web search without API keys or rate limits. webserp uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to mimic real browser fingerprints — results like a browser, speed like an API. It queries 8 engines in parallel, so even if one gets rate-limited, results still come back.
+**Built for AI agents.** Tools like [OpenClaw](https://github.com/openclaw/openclaw) and other AI agents need reliable web search without API keys or rate limits. webserp uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to mimic real browser fingerprints — results like a browser, speed like an API. It queries 7 engines in parallel, so even if one gets rate-limited, results still come back.
 
 ### Why a CLI tool instead of a Python library?
 
@@ -96,7 +96,7 @@ A CLI tool keeps web search out of the agent's process. The agent calls `webserp
 webserp "latest python 3.14 release date" --max-results 5
 
 # Searching multiple engines for diverse results
-webserp "docker networking troubleshooting" --engines google,brave,bing --max-results 3
+webserp "docker networking troubleshooting" --engines google,brave,duckduckgo --max-results 3
 
 # Quick search with verbose to see which engines responded
 webserp "CVE-2024 critical vulnerabilities" --verbose --max-results 5

@@ -1,11 +1,11 @@
 ---
 name: webserp
-description: Web search across 8 engines in parallel with browser impersonation. Use when the agent needs current information from the web — news, documentation, recent events, or anything beyond training data. Returns structured JSON (SearXNG-compatible) with title, URL, and content. Uses curl_cffi to mimic real browser fingerprints so requests don't get blocked. Install with `pip install webserp`. No API keys needed.
+description: Web search across 7 engines in parallel with browser impersonation. Use when the agent needs current information from the web — news, documentation, recent events, or anything beyond training data. Returns structured JSON (SearXNG-compatible) with title, URL, and content. Uses curl_cffi to mimic real browser fingerprints so requests don't get blocked. Install with `pip install webserp`. No API keys needed.
 ---
 
 # webserp
 
-Metasearch CLI — queries Google, Bing, DuckDuckGo, Brave, Yahoo, Mojeek, Startpage, and Presearch in parallel. Uses curl_cffi for browser impersonation. Results like a browser, speed like an API.
+Metasearch CLI — queries Google, DuckDuckGo, Brave, Yahoo, Mojeek, Startpage, and Presearch in parallel. Uses curl_cffi for browser impersonation. Results like a browser, speed like an API.
 
 ## When to use webserp
 
@@ -25,11 +25,11 @@ No API keys, no configuration. Just install and search.
 ## Usage
 
 ```bash
-# Search all 8 engines (default)
+# Search all 7 engines (default)
 webserp "how to deploy docker containers"
 
 # Search specific engines
-webserp "python async tutorial" --engines google,brave,bing
+webserp "python async tutorial" --engines google,brave,duckduckgo
 
 # Limit results per engine
 webserp "rust vs go" --max-results 5
@@ -80,6 +80,6 @@ Parse with `jq` or any JSON parser. The `results` array contains `title`, `url`,
 ## Tips
 
 - Use `--max-results 5` to keep output concise when you just need a few links
-- Use `--engines google,bing` to target specific engines for faster results
+- Use `--engines google,brave` to target specific engines for faster results
 - Use `--verbose` (writes to stderr) to see which engines responded — the JSON on stdout is unaffected
 - Results are deduplicated by URL across engines — you won't get the same link twice

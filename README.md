@@ -102,23 +102,6 @@ webserp "docker networking troubleshooting" --engines google,brave,bing --max-re
 webserp "CVE-2024 critical vulnerabilities" --verbose --max-results 5
 ```
 
-### Parsing results in an agent
-
-```python
-import subprocess
-import json
-
-result = subprocess.run(
-    ["webserp", "how to fix docker networking", "--max-results", "5"],
-    capture_output=True, text=True
-)
-data = json.loads(result.stdout)
-
-for r in data["results"]:
-    print(f"{r['title']}: {r['url']}")
-```
-
-The `results` array contains `title`, `url`, `content`, and `engine` fields — structured context the agent can use to answer questions, cite sources, or follow up on links.
 
 ## License
 

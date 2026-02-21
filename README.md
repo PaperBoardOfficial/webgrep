@@ -6,7 +6,7 @@ Like `grep` for the web. Searches Google, Bing, DuckDuckGo, Brave, Yahoo, Mojeek
 
 ## Why webserp?
 
-Existing tools like `ddgs` get rate-limited and blocked because they use standard HTTP libraries. webserp uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to impersonate real browsers (Chrome TLS/JA3 fingerprints), making requests indistinguishable from a human browsing.
+Most search scraping tools get rate-limited and blocked because they use standard HTTP libraries. webserp uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to impersonate real browsers (Chrome TLS/JA3 fingerprints), making requests indistinguishable from a human browsing.
 
 - **8 search engines** queried in parallel
 - **Browser impersonation** via curl_cffi — bypasses bot detection

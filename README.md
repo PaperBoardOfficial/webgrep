@@ -76,30 +76,33 @@ JSON output matching SearXNG's format:
 
 google, bing, duckduckgo, brave, yahoo, mojeek, startpage, presearch
 
-## Use with AI Agents
+## For OpenClaw and AI agents
 
-webserp outputs structured JSON to stdout, making it easy for AI agents to call it as a shell tool for web search. Any agent that can execute shell commands can use webserp — no API keys, no SDKs, no configuration.
+**Built for AI agents.** Tools like [OpenClaw](https://github.com/openclaw/openclaw) and other AI agents need reliable web search without API keys or rate limits. Existing tools like `ddgs` get blocked quickly. webserp is a single CLI command that agents can call directly from the shell — it queries 8 engines in parallel, so even if one gets rate-limited, results still come back.
 
-### OpenClaw
+### Why a CLI tool instead of a Python library?
 
-[OpenClaw](https://github.com/openclaw/openclaw) agents can use webserp as a skill or via the `system.run` tool:
+A CLI tool keeps web search out of the agent's process. The agent calls `webserp`, gets JSON back, and the process exits — no persistent HTTP sessions, no in-process state, no import overhead. Agents that never need web search pay zero cost.
+
+### Example agent use cases
+
+- **Research** — searching the web for current information before answering user questions
+- **Fact checking** — verifying claims against multiple search engines
+- **Link discovery** — finding relevant URLs, documentation, or source code
+- **News monitoring** — checking for recent events or updates on a topic
 
 ```bash
-# Install webserp on the machine running the OpenClaw Gateway
-pip install webserp
+# Agent searching for current information
+webserp "latest python 3.14 release date" --max-results 5
+
+# Searching multiple engines for diverse results
+webserp "docker networking troubleshooting" --engines google,brave,bing --max-results 3
+
+# Quick search with verbose to see which engines responded
+webserp "CVE-2024 critical vulnerabilities" --verbose --max-results 5
 ```
 
-The agent can then search the web by executing a shell command:
-
-```bash
-webserp "latest python release" --max-results 5
-```
-
-The JSON output is parsed directly by the agent — the `results` array contains `title`, `url`, `content`, and `engine` fields, giving the agent structured context to answer questions, cite sources, or follow up on links.
-
-### Any Agent / Framework
-
-webserp works with any agent that can run shell commands and parse JSON — LangChain, CrewAI, AutoGPT, Claude Code, or custom agents:
+### Parsing results in an agent
 
 ```python
 import subprocess
@@ -115,7 +118,7 @@ for r in data["results"]:
     print(f"{r['title']}: {r['url']}")
 ```
 
-Since webserp queries 8 engines in parallel with browser impersonation, agents get more diverse and reliable results compared to single-engine tools like `ddgs` that are easily rate-limited.
+The `results` array contains `title`, `url`, `content`, and `engine` fields — structured context the agent can use to answer questions, cite sources, or follow up on links.
 
 ## License
 

@@ -1,4 +1,4 @@
-"""CLI entry point for webgrep."""
+"""CLI entry point for webserp."""
 
 import argparse
 import asyncio
@@ -12,7 +12,7 @@ from .search import search
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="webgrep",
+        prog="webserp",
         description="Metasearch CLI — query multiple search engines in parallel.",
     )
     parser.add_argument("query", help="Search query")
@@ -25,7 +25,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=int, default=10, help="Per-engine timeout in seconds (default: 10)")
     parser.add_argument("--proxy", default=None, help="Proxy URL for all requests")
     parser.add_argument("--verbose", action="store_true", help="Show engine success/failure in stderr")
-    parser.add_argument("--version", action="version", version=f"webgrep {__version__}")
+    parser.add_argument("--version", action="version", version=f"webserp {__version__}")
 
     args = parser.parse_args(argv)
 
@@ -34,7 +34,7 @@ def main(argv: list[str] | None = None) -> int:
         engine_names = [e.strip() for e in args.engines.split(",")]
         invalid = [e for e in engine_names if e not in ALL_ENGINES]
         if invalid:
-            print(f"webgrep: unknown engines: {', '.join(invalid)}", file=sys.stderr)
+            print(f"webserp: unknown engines: {', '.join(invalid)}", file=sys.stderr)
             print(f"Available: {', '.join(ALL_ENGINES.keys())}", file=sys.stderr)
             return 1
 

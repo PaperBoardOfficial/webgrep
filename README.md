@@ -1,14 +1,14 @@
-# webgrep
+# webserp
 
 Metasearch CLI — query multiple search engines in parallel with browser impersonation.
 
-Like `grep` for the web. Searches Google, Bing, DuckDuckGo, Brave, Yahoo, Yandex, Mojeek, Startpage, and Presearch simultaneously, deduplicates results, and returns clean JSON.
+Like `grep` for the web. Searches Google, Bing, DuckDuckGo, Brave, Yahoo, Mojeek, Startpage, and Presearch simultaneously, deduplicates results, and returns clean JSON.
 
-## Why webgrep?
+## Why webserp?
 
-Existing tools like `ddgs` get rate-limited and blocked because they use standard HTTP libraries. webgrep uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to impersonate real browsers (Chrome TLS/JA3 fingerprints), making requests indistinguishable from a human browsing.
+Existing tools like `ddgs` get rate-limited and blocked because they use standard HTTP libraries. webserp uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to impersonate real browsers (Chrome TLS/JA3 fingerprints), making requests indistinguishable from a human browsing.
 
-- **9 search engines** queried in parallel
+- **8 search engines** queried in parallel
 - **Browser impersonation** via curl_cffi — bypasses bot detection
 - **Fault tolerant** — if one engine fails, others still return results
 - **SearXNG-compatible JSON** output format
@@ -18,26 +18,26 @@ Existing tools like `ddgs` get rate-limited and blocked because they use standar
 ## Install
 
 ```bash
-pip install webgrep
+pip install webserp
 ```
 
 ## Usage
 
 ```bash
 # Search all engines
-webgrep "how to deploy docker containers"
+webserp "how to deploy docker containers"
 
 # Search specific engines
-webgrep "python async tutorial" --engines google,brave,bing
+webserp "python async tutorial" --engines google,brave,bing
 
 # Limit results per engine
-webgrep "rust vs go" --max-results 5
+webserp "rust vs go" --max-results 5
 
 # Show which engines succeeded/failed
-webgrep "test query" --verbose
+webserp "test query" --verbose
 
 # Use a proxy
-webgrep "query" --proxy "socks5://127.0.0.1:1080"
+webserp "query" --proxy "socks5://127.0.0.1:1080"
 ```
 
 ## Output Format
@@ -74,7 +74,7 @@ JSON output matching SearXNG's format:
 
 ## Engines
 
-google, bing, duckduckgo, brave, yahoo, yandex, mojeek, startpage, presearch
+google, bing, duckduckgo, brave, yahoo, mojeek, startpage, presearch
 
 ## License
 

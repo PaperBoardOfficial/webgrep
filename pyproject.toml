@@ -28,10 +28,10 @@ dependencies = [
 ]
 
 [project.scripts]
-webgrep = "webgrep.cli:main"
+webserp = "webserp.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/PaperBoardOfficial/webgrep"
+Homepage = "https://github.com/PaperBoardOfficial/webserp"
 
 [tool.setuptools.packages.find]
 where = ["src"]

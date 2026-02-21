@@ -78,7 +78,7 @@ google, bing, duckduckgo, brave, yahoo, mojeek, startpage, presearch
 
 ## For OpenClaw and AI agents
 
-**Built for AI agents.** Tools like [OpenClaw](https://github.com/openclaw/openclaw) and other AI agents need reliable web search without API keys or rate limits. Existing tools like `ddgs` get blocked quickly. webserp is a single CLI command that agents can call directly from the shell — it queries 8 engines in parallel, so even if one gets rate-limited, results still come back.
+**Built for AI agents.** Tools like [OpenClaw](https://github.com/openclaw/openclaw) and other AI agents need reliable web search without API keys or rate limits. webserp uses [curl_cffi](https://github.com/lexiforest/curl_cffi) to mimic real browser fingerprints — results like a browser, speed like an API. It queries 8 engines in parallel, so even if one gets rate-limited, results still come back.
 
 ### Why a CLI tool instead of a Python library?
 
